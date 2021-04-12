@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Democracy vs. Autocracy - an Analysis"
+author: "Gee Hyun Kwon, Angela Simei Li, Christopher Petty"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
