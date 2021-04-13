@@ -38,6 +38,7 @@ anim
 
 ```
 
+
 ```{r pressure, echo=FALSE, fig.cap="Government Types of the World", out.width = '100%'}
 
 knitr::include_graphics("data/gifs/all_countries_final.gif")
@@ -111,6 +112,7 @@ This graph is a continuation of the first one using slightly different criteria 
 
 ## ARED Analysis
 
+
 Putting together the disjointed Excel files allows us to perform collective analysis on the group of elites across countries. There are many ways this data can be segmented and interpreted.
 
 This map below gives a birds-eyed-view of what geography the data set covers. Given that some elites lived in now-defunct countries, we used a pre-1990 version of the world map. When compared to the previous section of the analysis, one would see that not all authoritarian regimes are covered by the data set. The number of elites also varies from one regime to another, which is represented with the coloring scale.
@@ -118,6 +120,7 @@ This map below gives a birds-eyed-view of what geography the data set covers. Gi
 However, one can argue that this map tries to be conclusive yet failed to do so. In fact, a smaller number of ruling elites from a certain country does not equal to more freedom. In addition, the timespan of the ruling period aren't uniform across the board, which means that some regimes have a smaller number of elites simply because they were only under authoritarian ruling for a short period of time.
 
 In a future section of the project, we would like to include time series analysis in addition to geo-spatial ones. The space-time overlaying would give a much more dynamic view of the world under authoritarian control. 
+
 
 
 ```{r}
