@@ -38,13 +38,13 @@ anim
 
 ```
 
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+```{r pressure, echo=FALSE, out.width = '100%'}
 
 knitr::include_graphics("data/gifs/all_countries_final.gif")
 
 ```
 
-*Note: This gif is loaded from a file. It would render directly from the code seen above in the same way, but it could take upwards of an hour.*
+*Note: This gif is loaded from a file. It would render directly from the code, but it could take upwards of an hour.*
 
 The graph above sets the world stage, flipping through the years and highlighting the changing landscape of democracies and dictatorships. A lot of information can be inferred from this, and a lot of questions prompted. One such example relates to Domino Theory. Disastrous foreign policy aside, does the theory hold any water at all as it relates to dictatorships and democracies? A look at the Americas and Europe versus Africa, Northern Asia/Eurasia and The Middle East might suggest that government types tend to cluster or influence those around them. The data here is too shallow to properly explain all the reasons dictatorships or democracies develop, but it's interesting nonetheless. 
 
@@ -111,7 +111,7 @@ This graph is a continuation of the first one using slightly different criteria 
 
 ## ARED Analysis
 
-A Map with varying colors
+A Map with varying colors. The map shows which countries are covered in the ARED data sets at a glance.
 
 ```{r}
 countries <- elites %>%
