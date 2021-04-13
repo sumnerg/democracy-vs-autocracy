@@ -1,2 +1,6 @@
 # Conclusion
 
+If we have this type of data set, 
+we don't have as much data as we want. Some time period are more tumultuous than the other, and if there are a lot of personnel change it could predict the downfall of the regime itself. 
+
+Sometimes, there could be domino effects of the regimes bordering each other.

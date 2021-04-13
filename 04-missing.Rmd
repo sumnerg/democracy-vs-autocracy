@@ -4,3 +4,5 @@ There are missing values for some members of the Chinese Communist Party, especi
 null values. Since we are more interested on their tenure and their exit types, this was not too much of an issue.
 
 We did find some data which had no exit fate as well as exit date/length of tenure. These entries were only used for analyzing occupation.
+
+There are many missing values in the world map's data set, especially in the early years. There are multiple reasons for this. Borders get redrawn, prior colonies gain their independence, some countries get renamed, and others simply didn't have enough information about them to provide a regime ranking.

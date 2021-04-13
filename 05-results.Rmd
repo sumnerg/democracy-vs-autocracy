@@ -109,6 +109,62 @@ knitr::include_graphics("data/gifs/all_countries_final2.gif")
 
 This graph is a continuation of the first one using slightly different criteria (the democracy index instead of the regime designation). While the previous graph provided a useful look at history, this one provides a more accurate view of the current affairs of the world.
 
+## ARED Analysis
+
+A Map with varying colors
+
+```{r}
+countries <- elites %>%
+  group_by(STATE) %>%
+  summarize(elite_count = n())
+
+countries <- data.frame(countries, stringsAsFactors = FALSE)
+
+```
+
+```{r}
+WorldData <- map_data('worldLores') #use the old map
+WorldData <- fortify(WorldData)
+
+```
+
+```{r}
+elite_map <- ggplot() +
+  geom_map(data=WorldData, map=WorldData,
+              aes(x=long, y=lat, group=group, map_id=region),
+              fill="white", colour="#7f7f7f", size=0.5) +
+  geom_map(data=countries, map=WorldData,
+              aes(fill=elite_count, map_id=STATE),
+              colour="#7f7f7f", size=0.5) +
+  scale_fill_gradient(low = "red", high = "purple") +
+  labs(title = "Where are the elites from?", 
+       subtitle = "Map of authoritarian regimes covered by Dataverse data sets", 
+       caption = "Source: ARED database")
+
+elite_map
+
+```
+
+Regimes and their elite count
+
+```{r}
+countries <- arrange(countries, elite_count)
+countries$STATE <- factor(countries$STATE, levels = countries$STATE)
+
+```
+
+```{r}
+elite_bar <- ggplot(countries, aes(STATE, elite_count, fill = elite_count)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_gradient(low = "red", high = "purple") +
+  labs(title = "The elite number rank", 
+       subtitle = "# of elites from authoritarian regimes covered by Dataverse data sets", 
+       caption = "Source: ARED database")
+
+elite_bar
+
+```
 
 ## Case Study: USSR
 

@@ -1,7 +1,53 @@
-# Data transformation
+### Data transformation for ARED Datasets
 
-For the ARED datasets, some of the date formats were not normalized, as they had two different formats. We formatted the data to have YYYY/MM/DD format.
-Since readxl had an issue inferring types of these non-normalized dates, we created a small jupyter notebook to clean the data. Notebook is included in the /data/clean directory.
+The set on authoritarian government elites is published via Harvard Dataverse project. Each elite having one row in the data set, the columns include both demographic and professional information about the elites.
+
+The original data set was published in 23 different files. For this project, we have condensed the files into 1 unified file with consistent columns and value formats. The result
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(GGally)
+library(parcoords)
+library(vcd)
+library(grid)
+library(treemap)
+library("tmap")
+library("tmaptools")
+library("sf")
+library("leaflet")
+library(ggplot2)
+library(dplyr)
+library(mapdata)
+library(RCurl)
+```
+
+```{r}
+elites <- read.csv("data/All_Elites.csv")
+
+```
+
+The files have undergone considerable cleaning in order to be ready for the cross-regime analysis we intend to perform. Here are some of the actions we have taken,
+
+
+1. We have replaced missing values with "na" for most columns. 
+
+2. For columns with date as values, we reduced the entry to just "year" since many entries are missing the exact dates of the event. In the grand scheme of things, the exact dates are often not additive to our insights.
+
+3. We added the column of Personal ID to give each elite a unique identifier. This column would be called the "primary key" in an SQL analysis.
+
+4. We rearranged the columns so they are consistent across the regimes. Logically, there are three groups of information, and the columns are arranged in the following order,
+
+- "regime information", 
+- "elite personal information"
+- "elite career information"
+
+5. We have removed some uninformative columns from the file, including some with significant amount of missing values and some with calculated values.
+
+6. Names of the elites can be tricky given that they are written inconsistently. For the Chinese elites, there is no comma between first and last names. For the Laotian elites, there is no comma in names because culturally there is no last name.
+
+7. Fonts and formats (such as the fill of cells) are inconsistent across the files. We have made them uniform.
+
 
 ```{r}
 # Read the excel input
@@ -11,7 +57,7 @@ china <- read.csv("data/ARED/China_cleaned.csv")
 ```
 
 
-###Data Transformation World Maps
+### Data Transformation World Maps
 
 In order to create the world map, for both the data sets I added a fill column that would correspond to the fill color of different government types in a map of the world. This is accomplished using case_when. I also fixed up some country names in both excel and R so the countries in my data sets would match the names of the countries in R’s built in map_data. This is relevant because I would then left join the downloaded data set and the one in R (with the countries coordinates for the map) on the country. The last bit of data transformation I performed for the world map was to change the year column from double to integer, this cleaned up the trailing decimals that popped up when the years cycled in the animation.
 
@@ -92,6 +138,11 @@ ag_df <- df2 %>% group_by(un_continent_name, year) %>% filter(!is.na(un_continen
 ag_df[,2] <- sapply(ag_df[,2],as.integer)
 
 ```
+
+
+
+
+
 
 
 
