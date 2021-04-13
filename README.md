@@ -1,64 +1,21 @@
 ## Democracy vs. Autocracy - A view of the Democratic and Autocratic worlds
 
-This project was first 
+Authoritarian regimes are very hard to figure out. How do we figure out what's going on in a country that would not reveal itself? Are there more authoritarian regimes, or less? This project focuses on viewing authoritarian regimes from multiple viewpoints - from outside, based on what's happening in the democratic countries around it, and from inside, based on the ruling elites inside it. For this project we have mostly used the ARED database published in Harvard Dataverse as well as Democracy datasets to analyze the tendancy of the world as a whole. Moreover, this project provides a case study focused on the "exit methods" of individuals in an authoritarian regime - from natural resignation to premature demise.
 
-*If you have any difficulties or have feedback of any kind, please file an issue.*
+### Data Sources
 
-### Copy this template
+ARED Harvard Dataset
 
-- [ ] 1. Click the green "Use this template" button above.  DO NOT FORK THE REPO. Choose a descriptive name for your repo, such as "federalbudget" or "AIDSdeaths".  (If you change your mind before you do any work, delete your new repo and start over.)
+https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QZ9BSA
 
-- [ ] 2. In the Description field, write: "Bookdown source files for EDAV final project".
+Democracy Dataset Repo
 
-### Set up GitHub Pages	
-- [ ] 1. On the home page of your repo, click Settings. Scroll down to the GitHub pages section and change **Source** from **None** to **main**, change **/ (root)** to **/docs** folder, and click Save. Above the **Source** line, a bar will appear with your book's URL. The bar will initially be blue and indicate that your book is *ready* to be published and will change to green once it is published. Copy the URL. (Note that sometimes there is a delay until your book actually appears at that URL. If it doesn't appear after a few minutes, make a change and commit it to trigger a GitHub Pages build.)	
+https://xmarquez.github.io/democracyData/reference/pacl.html
 
-- [ ] 2. Click the gear button near "About" on the home page of the repo and paste your book URL into the **Website** field that appears on the right.
+Democracy Index
 
-### Clone the repo
+https://www.gapminder.org/data/documentation/democracy-index/
 
-- [ ] 1. Clone your new repo with *File, New Project..., Version Control, Git* in RStudio.
+More info on the data sources can be found inside the data chapter of the bookdown.
 
-### Edit some key files
-
-- [ ] 1. In `index.Rmd`, change YOUR TITLE HERE to your title.
-
-- [ ] 2. In `index.Rmd`, change YOUR NAMES HERE to your names.
-
-- [ ] 3. In `_bookdown.yml`, change YOUR GITHUB USERNAME to your GitHub username in the two places it appears.
-
-- [ ] 4. In `_bookdown.yml`, change YOUR GITHUB REPO to your GitHub repo name in the two places it appears.
-
-(Note that 3. and 4. provide links to the `.Rmd` files of your project for editing and viewing. If you move your `.Rmd` files you will need to update these file paths. Once your book is rendered, test that the edit (pen) and view (eye) buttons work.)
-
-- [ ] 5. In `_output.yml`, change YOUR SHORT TITLE to a shortened version of your title. (Leave the "after:" line indicating that the book was published with bookdown as is.)
-
-### Render the book
-
-- [ ] 1. Install **bookdown** with `install.packages("bookdown")`. If you already have it, update to the most recent version.
-
-- [ ] 2. Render locally with `bookdown::render_book("index.Rmd")` or clicking the *Build book* button which should appear in the Build tab (in the same pane as Environment, History, Connections, ...).
-
-- [ ] 3. Use `browseURL("docs/index.html")` to view your book locally (or just open `index.html` in a browser).
-
-- [ ] 4. If it looks good, commit and push all changed files to GitHub. 
-
-(You will need to repeat steps 2 and 4 every time you wish to update the book online.)
-
-### Edit README	
-
-Once you've completed these steps, delete the content of this **README** and add a short description of your project with a link to the book URL. It would be appreciated if you add the following to the end:	
-
-
-### Demo Video	
-
-A demo video showing how to create a **bookdown book** following these similar instructions: http://bit.ly/fiveminutebookdown Note that this video uses a different template.
-
-### Additional features	
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
-
-*This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*	
-
-
-
+*This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate.*
