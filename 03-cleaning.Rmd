@@ -10,3 +10,88 @@ china <- read.csv("data/ARED/China_cleaned.csv")
 
 ```
 
+
+###Data Transformation World Maps
+
+In order to create the world map, for both the data sets I added a fill column that would correspond to the fill color of different government types in a map of the world. This is accomplished using case_when. I also fixed up some country names in both excel and R so the countries in my data sets would match the names of the countries in R’s built in map_data. This is relevant because I would then left join the downloaded data set and the one in R (with the countries coordinates for the map) on the country. The last bit of data transformation I performed for the world map was to change the year column from double to integer, this cleaned up the trailing decimals that popped up when the years cycled in the animation.
+
+```{r}
+
+library(tidyverse)
+library(sqldf)
+library(transformr)
+library(maps)
+
+df <- read_csv('data/country_data.csv')
+
+df2 <- df %>% 
+  mutate(fill=case_when(
+    regime == 3 ~ 1,
+    regime == 4 ~ 2,
+    regime == 5 ~ 3,
+    TRUE ~ 4)) %>% 
+  select(ctryname, year, fill, un_continent_name, regime)
+
+
+color_vector <- c("coral1", "darkgoldenrod1", "blueviolet", "cadetblue1", "darkgray")
+
+
+world_map <- map_data('world')
+world_map$region[world_map$region == "Greenland"] <- "Denmark"
+
+map_df <- crossing(world_map %>% distinct(region), 
+  df %>% distinct(year) %>% filter(!is.na(year))) %>% 
+  left_join(world_map) %>% 
+  left_join(df2, by=c('region'='ctryname', 'year' = 'year')) %>% 
+  mutate(fill=if_else(is.na(fill), 5, fill))
+
+
+map_df[,2] <- sapply(map_df[,2],as.integer)
+
+```
+
+```{r}
+
+dfa <- read_csv('data/country_data2.csv')
+
+dfb <- dfa %>% 
+  mutate(fill=case_when(
+    `Democracy Index` >= 60 ~ 1,
+    `Democracy Index` < 60 & `Democracy Index` >= 40 ~ 2,
+    `Democracy Index` < 40 ~ 3)) %>% 
+  select(name, year, fill, `Democracy Index`)
+
+color_vector2 <- c("cadetblue1", "coral1", "brown4", "darkgray")
+
+
+world_map2 <- map_data('world')
+world_map2$region[world_map2$region == "Greenland"] <- "Denmark"
+
+
+map_df2 <- crossing(world_map2 %>% distinct(region), 
+                   dfb %>% distinct(year) %>% filter(!is.na(year))) %>% 
+  left_join(world_map2) %>% 
+  left_join(dfb, by=c('region'='name', 'year' = 'year')) %>% 
+  mutate(fill=if_else(is.na(fill), 4, fill))
+
+
+map_df2[,2] <- sapply(map_df2[,2],as.integer)
+
+```
+
+
+### Data Transformation Continents Bar Graph
+
+The data transformation for the bar graph was done using the same regime data set loaded before. This time I added a new column to the data frame that calculated the fraction of dictatorships of total countries grouped by each continent. The only other data transformation I performed on this data was to get rid of the NA values.
+
+```{r}
+
+ag_df <- df2 %>% group_by(un_continent_name, year) %>% filter(!is.na(un_continent_name)) %>% 
+  summarize(perc_dict = sum(regime %in% c(3, 4, 5)) / sum(!is.na(regime)))
+
+ag_df[,2] <- sapply(ag_df[,2],as.integer)
+
+```
+
+
+

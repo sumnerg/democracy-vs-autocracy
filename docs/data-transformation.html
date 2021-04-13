@@ -24,7 +24,7 @@
 <meta name="author" content="Gee Hyun Kwon, Angela Simei Li, Christopher Petty" />
 
 
-<meta name="date" content="2021-04-12" />
+<meta name="date" content="2021-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -114,11 +114,15 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="data-transformation.html"><a href="data-transformation.html#data-transformation-continents-bar-graph"><i class="fa fa-check"></i><b>3.0.1</b> Data Transformation Continents Bar Graph</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#case-study-ussr"><i class="fa fa-check"></i><b>5.1</b> Case Study: USSR</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#world-overview"><i class="fa fa-check"></i><b>5.1</b> World Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#case-study-ussr"><i class="fa fa-check"></i><b>5.2</b> Case Study: USSR</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -145,7 +149,13 @@
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
 <p>For the ARED datasets, some of the date formats were not normalized, as they had two different formats. We formatted the data to have YYYY/MM/DD format.
 Since readxl had an issue inferring types of these non-normalized dates, we created a small jupyter notebook to clean the data. Notebook is included in the /data/clean directory.</p>
+<p>###Data Transformation World Maps</p>
+<p>In order to create the world map, for both the data sets I added a fill column that would correspond to the fill color of different government types in a map of the world. This is accomplished using case_when. I also fixed up some country names in both excel and R so the countries in my data sets would match the names of the countries in R’s built in map_data. This is relevant because I would then left join the downloaded data set and the one in R (with the countries coordinates for the map) on the country. The last bit of data transformation I performed for the world map was to change the year column from double to integer, this cleaned up the trailing decimals that popped up when the years cycled in the animation.</p>
+<div id="data-transformation-continents-bar-graph" class="section level3" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> Data Transformation Continents Bar Graph</h3>
+<p>The data transformation for the bar graph was done using the same regime data set loaded before. This time I added a new column to the data frame that calculated the fraction of dictatorships of total countries grouped by each continent. The only other data transformation I performed on this data was to get rid of the NA values.</p>
 
+</div>
 </div>
             </section>
 

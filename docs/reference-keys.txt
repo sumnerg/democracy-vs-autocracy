@@ -1,8 +1,11 @@
+fig:pressure
 introduction
 data-sources
 data-transformation
+data-transformation-continents-bar-graph
 missing-values
 results
+world-overview
 case-study-ussr
 interactive-component
 conclusion
