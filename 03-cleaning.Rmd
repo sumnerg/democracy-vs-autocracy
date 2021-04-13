@@ -1,1 +1,12 @@
 # Data transformation
+
+For the ARED datasets, some of the date formats were not normalized, as they had two different formats. We formatted the data to have YYYY/MM/DD format.
+Since readxl had an issue inferring types of these non-normalized dates, we created a small jupyter notebook to clean the data. Notebook is included in the /data/clean directory.
+
+```{r}
+# Read the excel input
+ussr <- read.csv("data/ARED/USSR_cleaned.csv")
+china <- read.csv("data/ARED/China_cleaned.csv")
+
+```
+

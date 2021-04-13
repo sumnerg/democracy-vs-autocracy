@@ -1,1 +1,6 @@
 # Missing values
+
+There are missing values for some members of the Chinese Communist Party, especially for the birth dates of some. As such they are denoted as
+null values. Since we are more interested on their tenure and their exit types, this was not too much of an issue.
+
+We did find some data which had no exit fate as well as exit date/length of tenure. These entries were only used for analyzing occupation.

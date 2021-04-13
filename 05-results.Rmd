@@ -1,1 +1,56 @@
 # Results
+
+## Reading the data and preliminary analysis
+
+Let us first look at the history of the USSR.
+
+```{r}
+# Timeline taken from:
+# https://en.wikipedia.org/wiki/List_of_leaders_of_the_Soviet_Union
+library(vistime)
+library(highcharter)
+ussr_history <- data.frame(event = c("Lenin", "Stalin", "Malenkov", 
+                                     "Khruschev", "Brezhnev", "Andropov", 
+                                     "Chernenko", "Gorbachev", "End of USSR"), 
+                            start = c("1922-12-30", "1924-01-21", "1953-03-05", "1953-09-14", "1964-10-14", "1982-11-10", "1984-02-09", "1985-03-10", "1991-12-25"), 
+                            end = c("1924-01-21", "1953-03-05", "1953-09-14", "1964-10-14", "1982-11-10", "1984-02-09", "1985-03-10", "1991-12-25", "2000-01-01"), 
+                            group = "Leaders of USSR")
+
+hc_vistime(ussr_history)
+```
+
+
+
+```{r}
+library(ggplot2) 
+library(dplyr)
+# Data
+ussr <- read.csv("data/ARED/USSR_cleaned.csv")
+china <- read.csv("data/ARED/China_cleaned.csv")
+
+ussr_grouped <- as.data.frame(ussr) %>%
+  count(ELITE_EXITLEADER, ELITE_EXITTYPE)
+
+ggplot(ussr_grouped, aes(x = ELITE_EXITTYPE, y = n, fill = ELITE_EXITTYPE)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  geom_text(aes(label = n), position = position_dodge(width = 0.9), 
+            vjust = -0.4, color = "grey68") +
+  facet_wrap(~ELITE_EXITLEADER) +
+  # formatting
+  ggtitle("Exit strategies",
+          subtitle = "Popular ways to 'exit' an authoritarian regime based on leaders") +
+  labs(x = "Ways to 'exit' an authoritarian regime", y = "# of elites 'exiting' this way", 
+       caption = "Source: ARED USSR database") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(axis.ticks.x = element_blank()) +
+  theme(axis.text.x = element_blank()) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68"))
+```
+
+The blank "leader" with the regime change is when the USSR ultimately fell in 1991. So we can see that 19 elites who were 
+```{r}
+# bar chart showing timeline per leader in China/USSR
+# vistime
+```
+

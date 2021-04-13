@@ -1,2 +1,22 @@
 # Data sources
 
+The first dataset that caught our attention was the ARED (Authoritarian Ruling Elites Database) published in Harvard Dataverse.
+
+https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QZ9BSA
+
+This dataset contains data on the ruling elites in 22 different authoritarian regimes over the world, from different continents and time periods.
+
+The dataset is primarily focused on highlighting the demographics, time in power and the exit method of each of these elites.
+
+We have also found this repo of datasets on Democracy very helpful. In particular, we have used the Democracy and Dictatorship Dataset (PACL).
+
+https://xmarquez.github.io/democracyData/reference/pacl.html
+
+We also used the democracy index, found here:
+
+https://www.gapminder.org/data/documentation/democracy-index/
+
+We are not including the two datasets above since they are pretty large. The datasets can be easily downloaded from the links provided.
+
+The code used to generate GIFs from the above two datasets also take a while to run. While they are provided in this bookdown, we have chosen to embed
+the GIFs created by our code in the .Rmd files instead of running directly.

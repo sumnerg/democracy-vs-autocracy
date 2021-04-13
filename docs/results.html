@@ -24,7 +24,7 @@
 <meta name="author" content="Gee Hyun Kwon, Angela Simei Li, Christopher Petty" />
 
 
-<meta name="date" content="2021-04-11" />
+<meta name="date" content="2021-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,7 +34,7 @@
 <link rel="prev" href="missing-values.html"/>
 <link rel="next" href="interactive-component.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.0/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,6 +51,48 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.1.2/highcharts.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
+<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
+<script src="libs/highcharts-8.1.2/modules/map.js"></script>
+<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
+<script src="libs/highcharts-8.1.2/modules/data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
+<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
+<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
+<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
+<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
+<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
+<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
+<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
+<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
+<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
+<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
+<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
+<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
 
 
 
@@ -74,7 +116,10 @@
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#reading-the-data-and-preliminary-analysis"><i class="fa fa-check"></i><b>5.1</b> Reading the data and preliminary analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -98,7 +143,15 @@
             <section class="normal" id="section-">
 <div id="results" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="reading-the-data-and-preliminary-analysis" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Reading the data and preliminary analysis</h2>
+<p>Let us first look at the history of the USSR.</p>
+<div id="htmlwidget-f875687d209ba0e0cc2e" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f875687d209ba0e0cc2e">{"x":{"hc_opts":{"chart":{"reflow":true,"inverted":true,"zoomType":"xy"},"title":[],"yAxis":{"title":{"text":null},"type":"datetime"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"series":[{"data":[{"event":"Lenin","start":"1922-12-30T05:00:00Z","end":-1449946800,"group":"Leaders of USSR","tooltip":"<b>Lenin<\/b><br>from <b>1922-12-30<\/b> to <b>1924-01-21<\/b>","label":"Lenin","col":"#8DD3C7","fontcol":"black","subplot":1,"y":1,"low":-1483383600000,"high":-1449946800000,"x":1,"color":"#8DD3C7"},{"event":"Stalin","start":"1924-01-21T05:00:00Z","end":-530996400,"group":"Leaders of USSR","tooltip":"<b>Stalin<\/b><br>from <b>1924-01-21<\/b> to <b>1953-03-05<\/b>","label":"Stalin","col":"#FFFFB3","fontcol":"black","subplot":1,"y":1,"low":-1449946800000,"high":-530996400000,"x":1,"color":"#FFFFB3"},{"event":"Malenkov","start":"1953-03-05T05:00:00Z","end":-514324800,"group":"Leaders of USSR","tooltip":"<b>Malenkov<\/b><br>from <b>1953-03-05<\/b> to <b>1953-09-14<\/b>","label":"Malenkov","col":"#BEBADA","fontcol":"black","subplot":1,"y":1,"low":-530996400000,"high":-514324800000,"x":1,"color":"#BEBADA"},{"event":"Khruschev","start":"1953-09-14T04:00:00Z","end":-164577600,"group":"Leaders of USSR","tooltip":"<b>Khruschev<\/b><br>from <b>1953-09-14<\/b> to <b>1964-10-14<\/b>","label":"Khruschev","col":"#FB8072","fontcol":"black","subplot":1,"y":1,"low":-514324800000,"high":-164577600000,"x":1,"color":"#FB8072"},{"event":"Brezhnev","start":"1964-10-14T04:00:00Z","end":405752400,"group":"Leaders of USSR","tooltip":"<b>Brezhnev<\/b><br>from <b>1964-10-14<\/b> to <b>1982-11-10<\/b>","label":"Brezhnev","col":"#80B1D3","fontcol":"black","subplot":1,"y":1,"low":-164577600000,"high":405752400000,"x":1,"color":"#80B1D3"},{"event":"Andropov","start":"1982-11-10T05:00:00Z","end":445150800,"group":"Leaders of USSR","tooltip":"<b>Andropov<\/b><br>from <b>1982-11-10<\/b> to <b>1984-02-09<\/b>","label":"Andropov","col":"#FDB462","fontcol":"black","subplot":1,"y":1,"low":405752400000,"high":445150800000,"x":1,"color":"#FDB462"},{"event":"Chernenko","start":"1984-02-09T05:00:00Z","end":479278800,"group":"Leaders of USSR","tooltip":"<b>Chernenko<\/b><br>from <b>1984-02-09<\/b> to <b>1985-03-10<\/b>","label":"Chernenko","col":"#B3DE69","fontcol":"black","subplot":1,"y":1,"low":445150800000,"high":479278800000,"x":1,"color":"#B3DE69"},{"event":"Gorbachev","start":"1985-03-10T05:00:00Z","end":693637200,"group":"Leaders of USSR","tooltip":"<b>Gorbachev<\/b><br>from <b>1985-03-10<\/b> to <b>1991-12-25<\/b>","label":"Gorbachev","col":"#FCCDE5","fontcol":"black","subplot":1,"y":1,"low":479278800000,"high":693637200000,"x":1,"color":"#FCCDE5"},{"event":"End of USSR","start":"1991-12-25T05:00:00Z","end":946702800,"group":"Leaders of USSR","tooltip":"<b>End of USSR<\/b><br>from <b>1991-12-25<\/b> to <b>2000-01-01<\/b>","label":"End of USSR","col":"#D9D9D9","fontcol":"black","subplot":1,"y":1,"low":693637200000,"high":946702800000,"x":1,"color":"#D9D9D9"}],"type":"columnrange","dataLabels":{"enabled":true,"inside":true,"formatter":"function () {return (this.y === this.point.low ? this.point.event : \"\")}"}}],"xAxis":{"categories":["","Leaders of USSR"]},"tooltip":{"crosshairs":true,"formatter":"function () {return this.point.tooltip}"},"legend":{"enabled":false}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":["hc_opts.series.0.dataLabels.formatter","hc_opts.tooltip.formatter"],"jsHooks":[]}</script>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The blank “leader” with the regime change is when the USSR ultimately fell in 1991. So we can see that 19 elites who were</p>
 
+</div>
 </div>
             </section>
 

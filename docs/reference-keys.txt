@@ -3,5 +3,6 @@ data-sources
 data-transformation
 missing-values
 results
+reading-the-data-and-preliminary-analysis
 interactive-component
 conclusion
