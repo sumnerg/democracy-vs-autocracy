@@ -1,11 +1,13 @@
 fig:pressure
 introduction
 data-sources
-data-transformation
+data-transformation-for-ared-datasets
+data-transformation-world-maps
 data-transformation-continents-bar-graph
 missing-values
 results
 world-overview
+ared-analysis
 case-study-ussr
 interactive-component
 conclusion

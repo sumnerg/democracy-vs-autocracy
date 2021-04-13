@@ -7,3 +7,4 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+It is difficult to gauge properly what might be happening inside an authoritarian regime. For many, it is beneficial to keep the internal affairs of the country secret in order to maintain control and deflect international blame. There are signals we can find, however, both from the world neighboring these countries and from the people inside the regimes. We will explore ways to analyze authoritarian regimes by first comparing the more democratic regimes and the nearby countries. Then, we will look at ways to analyze signals from inside the regimes to see their situation.

@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="data-transformation.html"/>
+<link rel="next" href="missing-values.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-3.5.0/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -113,19 +113,21 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
 <ul>
-<li class="chapter" data-level="3.0.1" data-path="data-transformation.html"><a href="data-transformation.html#data-transformation-continents-bar-graph"><i class="fa fa-check"></i><b>3.0.1</b> Data Transformation Continents Bar Graph</a></li>
+<li class="chapter" data-level="2.0.1" data-path="data-sources.html"><a href="data-sources.html#data-transformation-for-ared-datasets"><i class="fa fa-check"></i><b>2.0.1</b> Data transformation for ARED Datasets</a></li>
+<li class="chapter" data-level="2.0.2" data-path="data-sources.html"><a href="data-sources.html#data-transformation-world-maps"><i class="fa fa-check"></i><b>2.0.2</b> Data Transformation World Maps</a></li>
+<li class="chapter" data-level="2.0.3" data-path="data-sources.html"><a href="data-sources.html#data-transformation-continents-bar-graph"><i class="fa fa-check"></i><b>2.0.3</b> Data Transformation Continents Bar Graph</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<li class="chapter" data-level="3" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>3</b> Missing values</a></li>
+<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#world-overview"><i class="fa fa-check"></i><b>5.1</b> World Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#case-study-ussr"><i class="fa fa-check"></i><b>5.2</b> Case Study: USSR</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#world-overview"><i class="fa fa-check"></i><b>4.1</b> World Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#ared-analysis"><i class="fa fa-check"></i><b>4.2</b> ARED Analysis</a></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#case-study-ussr"><i class="fa fa-check"></i><b>4.3</b> Case Study: USSR</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -159,6 +161,37 @@
 <p>The code used to generate GIFs from the above two datasets also take a while to run. While they are provided in this bookdown, we have chosen to embed
 the GIFs created by our code in the .Rmd files instead of running directly.</p>
 
+<div id="data-transformation-for-ared-datasets" class="section level3" number="2.0.1">
+<h3><span class="header-section-number">2.0.1</span> Data transformation for ARED Datasets</h3>
+<p>The set on authoritarian government elites is published via Harvard Dataverse project. Each elite having one row in the data set, the columns include both demographic and professional information about the elites.</p>
+<p>The original data set was published in 23 different files. For this project, we have condensed the files into 1 unified file with consistent columns and value formats. The result</p>
+<p>The files have undergone considerable cleaning in order to be ready for the cross-regime analysis we intend to perform. Here are some of the actions we have taken,</p>
+<ol style="list-style-type: decimal">
+<li><p>We have replaced missing values with “na” for most columns.</p></li>
+<li><p>For columns with date as values, we reduced the entry to just “year” since many entries are missing the exact dates of the event. In the grand scheme of things, the exact dates are often not additive to our insights.</p></li>
+<li><p>We added the column of Personal ID to give each elite a unique identifier. This column would be called the “primary key” in an SQL analysis.</p></li>
+<li><p>We rearranged the columns so they are consistent across the regimes. Logically, there are three groups of information, and the columns are arranged in the following order,</p></li>
+</ol>
+<ul>
+<li>“regime information”,</li>
+<li>“elite personal information”</li>
+<li>“elite career information”</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><p>We have removed some uninformative columns from the file, including some with significant amount of missing values and some with calculated values.</p></li>
+<li><p>Names of the elites can be tricky given that they are written inconsistently. For the Chinese elites, there is no comma between first and last names. For the Laotian elites, there is no comma in names because culturally there is no last name.</p></li>
+<li><p>Fonts and formats (such as the fill of cells) are inconsistent across the files. We have made them uniform.</p></li>
+</ol>
+</div>
+<div id="data-transformation-world-maps" class="section level3" number="2.0.2">
+<h3><span class="header-section-number">2.0.2</span> Data Transformation World Maps</h3>
+<p>In order to create the world map, for both the data sets I added a fill column that would correspond to the fill color of different government types in a map of the world. This is accomplished using case_when. I also fixed up some country names in both excel and R so the countries in my data sets would match the names of the countries in R’s built in map_data. This is relevant because I would then left join the downloaded data set and the one in R (with the countries coordinates for the map) on the country. The last bit of data transformation I performed for the world map was to change the year column from double to integer, this cleaned up the trailing decimals that popped up when the years cycled in the animation.</p>
+</div>
+<div id="data-transformation-continents-bar-graph" class="section level3" number="2.0.3">
+<h3><span class="header-section-number">2.0.3</span> Data Transformation Continents Bar Graph</h3>
+<p>The data transformation for the bar graph was done using the same regime data set loaded before. This time I added a new column to the data frame that calculated the fraction of dictatorships of total countries grouped by each continent. The only other data transformation I performed on this data was to get rid of the NA values.</p>
+
+</div>
 </div>
             </section>
 
@@ -166,7 +199,7 @@ the GIFs created by our code in the .Rmd files instead of running directly.</p>
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="missing-values.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
