@@ -59,8 +59,54 @@ Finally, we can see that Gorbachev comes top in the number of resignations durin
 ```{r}
 # bar chart showing timeline per leader in China/USSR
 # Stability of tenure
-ussr_avg <- as.data.frame(ussr) %>%
-  count(ELITE_EXITLEADER, ELITE_EXITTYPE)
-ussr_avg$ELITE_EXITLEADER[ussr_avg$ELITE_EXITLEADER == ""] <- "End of USSR"
+ussr$ELITE_EXITLEADER[ussr$ELITE_EXITLEADER == ""] <- "End of USSR"
+# boxplot by feed supplement 
+ggplot(ussr, aes(x = reorder(ELITE_EXITLEADER, -ELITE_RETENURE, median), y = ELITE_RETENURE)) + 
+  # plotting
+  geom_boxplot(fill = "#bc7ddf", color = "#473e2c", position=position_dodge(1)) + 
+  # formatting
+  ggtitle("Not an Easy Job",
+          subtitle = "Tenure of Authoritarian Elites During Different Leaders") +
+  labs(x = "Leader", y = "Tenure in Years", caption = "Source: ARED USSR database") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68")) +
+  scale_x_discrete(guide = guide_axis(n.dodge=3))
 ```
 
+This is a boxplot showing the distribution of tenures during each leaders. Shorter tenures in light of group management can also mean instability. With the exception of Lenin (since his rule in USSR was so short), we can see that both
+Malenkov and the End of USSR was a very tumultuous time, with median tenure being as low as 1~2 years. In contrast, we see that during times where there are less people leaving - Andropov, Brezhnev, Chernenko - we see that the average tenure was very long, and the people who left had been in power for a long time. This might show a time of generational change. For Brezhnev, we see a wide distribution as well as a large median tenure, as his regime lasted longer and was more stable. Despite a long time in power, it looks like the elites during Stalin and Khruschev were not able to stay too long, as they were frequently targets of demotion or expulsion based on the leaders' whim.
+
+```{r}
+academic <- c("Academic", "Academic director", "Academic lecturer", "Agricultural scientist", "Agronomist", "Economist", "Journalist", 
+              "Teacher", "University Lecturer", "Historian")
+engineering <- c("Chemical engineer", "Construction engineer", "Electrical engineer", "Electrician", "Factory engineer",
+                 "Mechanican engineer", "Mechanic", "Metallurgical engineer", "Metalurgist", "Mining engineer", "Shipbuilding engineer",
+                 "Technical engineer", "Machinist")
+administrative <- c("Diplomat", "Lawyer", "Laywer", "Economic administrator", "Civil administrator", "Prosecutor", "Union organizer", "Trade unionist")
+party <- c("Party functionary")
+soldier <- c("Soldier", "State security")
+worker <- c("Academic", "Engineer", "Administrative", "Party", "Soldier")
+ussr_occ <- ussr
+ussr_occ[ussr_occ$ELITE_OCCUPATION %in% academic, "ELITE_OCCUPATION"] <- "Academic"
+ussr_occ[ussr_occ$ELITE_OCCUPATION %in% engineering, "ELITE_OCCUPATION"] <- "Engineer"
+ussr_occ[ussr_occ$ELITE_OCCUPATION %in% administrative, "ELITE_OCCUPATION"] <- "Administrative"
+ussr_occ[ussr_occ$ELITE_OCCUPATION %in% party, "ELITE_OCCUPATION"] <- "Party"
+ussr_occ[ussr_occ$ELITE_OCCUPATION %in% soldier, "ELITE_OCCUPATION"] <- "Soldier"
+`%notin%` <- Negate(`%in%`)
+ussr_occ[ussr_occ$ELITE_OCCUPATION %notin% worker, "ELITE_OCCUPATION"] <- "Worker"
+ussr_occ <- as.data.frame(ussr_occ) %>%
+  count(ELITE_EXITLEADER, ELITE_OCCUPATION)
+ggplot(ussr_occ, aes(fill=ELITE_OCCUPATION, y=n, x=ELITE_EXITLEADER)) + 
+    ggtitle("Not My Dream Job",
+          subtitle = "Previous Jobs of Elites Leaving During Leaders") +
+  labs(x = "Leader", y = "Number of people in occupation", caption = "Source: ARED USSR database") +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.subtitle = element_text(face = "bold", color = "grey35")) +
+  theme(plot.caption = element_text(color = "grey68")) +
+    geom_bar(position="stack", stat="identity")+
+  scale_x_discrete(guide = guide_axis(n.dodge=3))
+```
+
+One more thing that we can check is the makeup of the people who leave during the regimes. In a turbulent period where fights between
+party members are frequent, we would see more party members leaving. It looks like Brezhnev and Stalin both had a lot of party members leaving the regime, hinting internal party quarrels. Also, it looks like soldiers were least likely to leave, which coincides with the powers that many soldiers had during the USSR. Finally, the number of members with administrative backgrounds leaving seems to correlate well with the overall number of elites leaving. The more people of administrative background leave, the more likely that there are elites leaving overall. This makes sense since these adminstrative roles would have played a large part in shaping policies, and a general downsizing/decline of the regime would affect these positions.
