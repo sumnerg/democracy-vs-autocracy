@@ -38,7 +38,8 @@ anim
 
 ```
 
-```{r pressure, echo=FALSE, out.width = '100%'}
+
+```{r pressure, echo=FALSE, fig.cap="Government Types of the World", out.width = '100%'}
 
 knitr::include_graphics("data/gifs/all_countries_final.gif")
 
@@ -46,7 +47,7 @@ knitr::include_graphics("data/gifs/all_countries_final.gif")
 
 *Note: This gif is loaded from a file. It would render directly from the code, but it could take upwards of an hour.*
 
-The graph above sets the world stage, flipping through the years and highlighting the changing landscape of democracies and dictatorships. A lot of information can be inferred from this, and a lot of questions prompted. One such example relates to Domino Theory. Disastrous foreign policy aside, does the theory hold any water at all as it relates to dictatorships and democracies? A look at the Americas and Europe versus Africa, Northern Asia/Eurasia and The Middle East might suggest that government types tend to cluster or influence those around them. The data here is too shallow to properly explain all the reasons dictatorships or democracies develop, but it's interesting nonetheless. 
+The graph above sets the world stage, flipping through the years and highlighting the changing landscape of democracies and dictatorships. The categories shown are Democracy, Royal Dictatorship, Military Dictatorship, and Civilian Dictatorship (which is dictatorship not reliant on the military for power, such as a dominant-party dictatorship). A lot of information can be inferred from this, and a lot of questions prompted. One such example relates to Domino Theory. Disastrous foreign policy aside, does the theory hold any water at all as it relates to dictatorships and democracies? A look at the Americas and Europe versus Africa, Northern Asia/Eurasia and The Middle East might suggest that government types tend to cluster or influence those around them. The data here is too shallow to properly explain all the reasons dictatorships or democracies develop, but it's interesting nonetheless. 
 
 Another observation can be made about how fickle new democracies are. Especially in South America the transitions from blue to gold were frequent (democracy to military dictatorship, so in other words a military coup). This is seen much less the more established a democracy becomes.
 
@@ -72,7 +73,7 @@ anim_b
 
 ```
 
-With the above graph we aim to shine some light on whether we're headed towards a democratic future. At the end of the time line, in 2008, there are less dictatorships in every continent (other than Oceania) than there was at the start-- or almost at any other point in history. This by no means guarantees a dictatorship free future, after all some of the worst offenders are still powerful, and we saw how frequently democracies were overthrown by the military in the world map, but it is hopeful evidence of a bright future. 
+With the above graph we aim to shine some light on whether we're headed towards a democratic future. At the end of the time line, in 2008, there are less dictatorships in every continent (other than Oceania) than there was at the start-- or at almost any other point in history. This by no means guarantees a dictatorship free future, after all some of the worst offenders are still some of the most influential countries in the world, and we saw how frequently democracies were overthrown by the military in the world map, but it is hopeful evidence of a bright future. 
 
 ```{r}
 
@@ -111,7 +112,16 @@ This graph is a continuation of the first one using slightly different criteria 
 
 ## ARED Analysis
 
-A Map with varying colors. The map shows which countries are covered in the ARED data sets at a glance.
+
+Putting together the disjointed Excel files allows us to perform collective analysis on the group of elites across countries. There are many ways this data can be segmented and interpreted.
+
+This map below gives a birds-eyed-view of what geography the data set covers. Given that some elites lived in now-defunct countries, we used a pre-1990 version of the world map. When compared to the previous section of the analysis, one would see that not all authoritarian regimes are covered by the data set. The number of elites also varies from one regime to another, which is represented with the coloring scale.
+
+However, one can argue that this map tries to be conclusive yet failed to do so. In fact, a smaller number of ruling elites from a certain country does not equal to more freedom. In addition, the timespan of the ruling period aren't uniform across the board, which means that some regimes have a smaller number of elites simply because they were only under authoritarian ruling for a short period of time.
+
+In a future section of the project, we would like to include time series analysis in addition to geo-spatial ones. The space-time overlaying would give a much more dynamic view of the world under authoritarian control. 
+
+
 
 ```{r}
 countries <- elites %>%
@@ -150,6 +160,7 @@ Regimes and their elite count
 ```{r}
 countries <- arrange(countries, elite_count)
 countries$STATE <- factor(countries$STATE, levels = countries$STATE)
+glimpse(countries)
 
 ```
 
@@ -165,6 +176,30 @@ elite_bar <- ggplot(countries, aes(STATE, elite_count, fill = elite_count)) +
 elite_bar
 
 ```
+
+
+An interesting analysis is to see the gender split among the ruling elites. How many and from where the female elites can be found in the bar chart below; one can see that only a small percentages of women appeared in some European countries, with most regimes have a complete absence of women elites. Unlikely most gender parity research projects, even with the glaring gender parity, we do not want to encourage girls of the next generation to become authoritarian leaders.
+
+```{r}
+genders <- rename(count(elites, elites$STATE, elites$ELITE_FEMALE), Freq = n)
+colnames(genders) <- c("country","gender","count")
+genders
+
+```
+
+
+```{r}
+gender_bar <- ggplot(genders, aes(fill=gender, y=count, x=reorder(country, count))) + geom_bar(position="fill", stat="identity") +
+  coord_flip() +
+  labs(title = "Male vs. Female", 
+       subtitle = "Elites are predominantly male in winning coalitions", 
+       caption = "Source: ARED database")  
+
+gender_bar
+
+```
+
+
 
 ## Case Study: USSR
 
