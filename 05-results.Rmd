@@ -1,5 +1,115 @@
 # Results
 
+## World Overview
+
+```{r message=FALSE}
+
+library(ggplot2)
+library(gganimate)
+library(scales)
+library(glue)
+library(knitr)
+
+```
+
+```{r}
+world <- ggplot(map_df, 
+       aes(x=long, y=lat, group=group, fill=factor(fill))) +
+  geom_polygon(color='white', show.legend = TRUE) +
+  scale_fill_manual(values = color_vector, labels=c('Civilian Dictatorship', 
+          'Military  Dictatorship', 'Royal Dictatorship', 'Democracy', 'NA')) +
+  theme(legend.title = element_text(size=22), legend.text = element_text(size=15),
+        title = element_text(size=32), axis.title = element_blank(), 
+        axis.ticks = element_blank(), axis.text = element_blank()) +
+  transition_time(year) +
+  ease_aes('linear') +
+  labs(title = 'Dictatorships of the World, Year: {frame_time}', fill='Gov. Type')
+
+
+```
+
+```{r eval=FALSE}
+
+anim <- animate(world, height = 1000, width = 2000, nframes = 200, fps = 15, end_pause = 45, renderer = gifski_renderer())
+
+anim_save("all_countries11.gif", anim)
+
+anim
+
+```
+
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+
+knitr::include_graphics("data/gifs/all_countries_final.gif")
+
+```
+
+*Note: This gif is loaded from a file. It would render directly from the code seen above in the same way, but it could take upwards of an hour.*
+
+The graph above sets the world stage, flipping through the years and highlighting the changing landscape of democracies and dictatorships. A lot of information can be inferred from this, and a lot of questions prompted. One such example relates to Domino Theory. Disastrous foreign policy aside, does the theory hold any water at all as it relates to dictatorships and democracies? A look at the Americas and Europe versus Africa, Northern Asia/Eurasia and The Middle East might suggest that government types tend to cluster or influence those around them. The data here is too shallow to properly explain all the reasons dictatorships or democracies develop, but it's interesting nonetheless. 
+
+Another observation can be made about how fickle new democracies are. Especially in South America the transitions from blue to gold were frequent (democracy to military dictatorship, so in other words a military coup). This is seen much less the more established a democracy becomes.
+
+Another common question that could be asked is if democracy is the future, is the direction we're headed towards a truly democratic world?
+
+
+```{r}
+
+dict_bar <- ggplot(ag_df, aes(x=un_continent_name, y=perc_dict, label=round(perc_dict, 2), fill=un_continent_name)) + 
+  geom_bar(stat='identity', show.legend = FALSE) + 
+  geom_text(vjust = -.5) +
+  transition_time(year) +
+  labs(title = 'What Fraction of Each Continent is a Dictatorship? Year: {frame_time}', x = "Continent", y = "Fraction")
+
+
+```
+
+```{r}
+
+anim_b <- animate(dict_bar, height = 600, width = 1000, nframes = 200, fps = 10, end_pause = 30, renderer = gifski_renderer())
+
+anim_b
+
+```
+
+With the above graph we aim to shine some light on whether we're headed towards a democratic future. At the end of the time line, in 2008, there are less dictatorships in every continent (other than Oceania) than there was at the start-- or almost at any other point in history. This by no means guarantees a dictatorship free future, after all some of the worst offenders are still powerful, and we saw how frequently democracies were overthrown by the military in the world map, but it is hopeful evidence of a bright future. 
+
+```{r}
+
+world2 <- ggplot(map_df2, 
+                aes(x=long, y=lat, group=group, fill=factor(fill))) +
+  geom_polygon(color='white', show.legend = TRUE) +
+  theme(legend.title = element_text(size=25), legend.text = element_text(size=18),
+        title = element_text(size=32), axis.title = element_blank(), 
+        axis.ticks = element_blank(), axis.text = element_blank()) +
+  scale_fill_manual(values = color_vector2, labels=c('Democracy', 
+                                                    'Hybrid Regime', 'Authoritarian Regime', 'NA')) + 
+  transition_time(year) +
+  ease_aes('linear') +
+  labs(title = 'Dictatorships of the World, Year: {frame_time}', fill='Gov Type')
+
+
+```
+
+```{r eval=FALSE}
+
+anim2 <- animate(world2, height = 1000, width = 2000, nframes = 200, fps = 20, end_pause = 60, renderer = gifski_renderer())
+
+anim_save("all_countries_c.gif", anim2)
+
+anim2
+
+```
+
+```{r echo=FALSE, out.width = '100%'}
+
+knitr::include_graphics("data/gifs/all_countries_final2.gif")
+
+```
+
+This graph is a continuation of the first one using slightly different criteria (the democracy index instead of the regime designation). While the previous graph provided a useful look at history, this one provides a more accurate view of the current affairs of the world.
+
+
 ## Case Study: USSR
 
 Let us first look at the history of the USSR.
