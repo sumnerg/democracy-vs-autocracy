@@ -48,6 +48,14 @@ The files have undergone considerable cleaning in order to be ready for the cros
 
 7. Fonts and formats (such as the fill of cells) are inconsistent across the files. We have made them uniform.
 
+```{r}
+countries <- elites %>%
+  group_by(STATE) %>%
+  summarize(elite_count = n())
+
+countries <- data.frame(countries, stringsAsFactors = FALSE)
+
+```
 
 ```{r}
 # Read the excel input
