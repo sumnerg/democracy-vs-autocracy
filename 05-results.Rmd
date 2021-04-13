@@ -1,6 +1,6 @@
 # Results
 
-## Reading the data and preliminary analysis
+## Case Study: USSR
 
 Let us first look at the history of the USSR.
 
@@ -19,6 +19,7 @@ ussr_history <- data.frame(event = c("Lenin", "Stalin", "Malenkov",
 hc_vistime(ussr_history)
 ```
 
+From here we can see 4 major leaders of USSR: Stalin, Khruschev, Brezhnev and Gorbachev. The leaders in between - Malenkov, Andropov and Chernenko, are leaders in transition periods, as seen by the short tenure of each of them. We can expect to see some tumultuous activity both inside, by the motion of the elites as well as from the outside world. First, let's see the statistics of the elites that had their careers cut short during each of these periods.
 
 
 ```{r}
@@ -30,6 +31,7 @@ china <- read.csv("data/ARED/China_cleaned.csv")
 
 ussr_grouped <- as.data.frame(ussr) %>%
   count(ELITE_EXITLEADER, ELITE_EXITTYPE)
+ussr_grouped$ELITE_EXITLEADER[ussr_grouped$ELITE_EXITLEADER == ""] <- "End of USSR"
 
 ggplot(ussr_grouped, aes(x = ELITE_EXITTYPE, y = n, fill = ELITE_EXITTYPE)) +
   geom_bar(position = "dodge", stat = "identity") +
@@ -48,9 +50,17 @@ ggplot(ussr_grouped, aes(x = ELITE_EXITTYPE, y = n, fill = ELITE_EXITTYPE)) +
   theme(plot.caption = element_text(color = "grey68"))
 ```
 
-The blank "leader" with the regime change is when the USSR ultimately fell in 1991. So we can see that 19 elites who were 
+From this graph, we can see that the shorter the regime is (Andropov, Chernenko) the less drastic the changes. One outlier here is Malenkov, where there were many demotions despite the short time in power. This seems to align with the fact that he was a successor of Stalin, and was struggling to keep his power in Kremlin. That might also explain his short time in power.
+
+Another observation is that Stalin was the most active in executing/exiling the elites, as he has the most death/expulsion counts among all of the leaders. This seems to coincide with history.
+
+Finally, we can see that Gorbachev comes top in the number of resignations during his period. This may have to do with the fact that his regime was the last of USSR. It may be that many elites foresaw this downward tendency of the USSR and as such decided to resign before facing a dawning regime change.
+
 ```{r}
 # bar chart showing timeline per leader in China/USSR
-# vistime
+# Stability of tenure
+ussr_avg <- as.data.frame(ussr) %>%
+  count(ELITE_EXITLEADER, ELITE_EXITTYPE)
+ussr_avg$ELITE_EXITLEADER[ussr_avg$ELITE_EXITLEADER == ""] <- "End of USSR"
 ```
 

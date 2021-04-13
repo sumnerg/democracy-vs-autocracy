@@ -1,3 +1,12 @@
 # Interactive component
 
+While creating the graphs and looking at the data, we were wondering if there was a way to show each elite's tenure and enrich it with their personal info.
+While it is definitely possible to create separate graphs for each demographics, it would be nice to show a graph that shows the active timeframe of each elite
+as well as their data. 
 
+To do this, we made an interactive Gantt chart with d3.js. We limited the sample to all "engineers" among USSR's elites. Hover over each bar of the elite to find out more about them.
+
+https://vizhub.com/hyun3010/5c4f0bb403ba44498aa4b9937f3b390a?edit=files&file=index.js#L13
+
+We can find some interesting things about the engineers - one thing is that none of them met a gruesome fate! 
+Even the demoted engineers had "no punishment" as a result, and none of them were executed or exiled.
