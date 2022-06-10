@@ -2,6 +2,8 @@
 
 Authoritarian regimes are very hard to figure out. How do we figure out what's going on in a country that would not reveal itself? Are there more authoritarian regimes, or less? This project focuses on viewing authoritarian regimes from multiple viewpoints - from outside, based on what's happening in the democratic countries around it, and from inside, based on the ruling elites inside it. For this project we have mostly used the ARED database published in Harvard Dataverse as well as Democracy datasets to analyze the tendancy of the world as a whole. Moreover, this project provides a case study focused on the "exit methods" of individuals in an authoritarian regime - from natural resignation to premature demise.
 
+SG3 notes: Includes animated maps!  And boxplots.
+
 ### Data Sources
 
 ARED Harvard Dataset
